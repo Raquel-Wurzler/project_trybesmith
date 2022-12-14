@@ -30,4 +30,16 @@ const create = async (req: Request, res: Response) => {
   }
 };
 
-export default { create };
+const login = async (req: Request, res: Response) => {
+  try {
+    const { username } = req.body;
+    const user = await usersService.getByUsername(username);
+    const token = createToken(user);
+    return res.status(statusCodes.OK).json({ token });
+  } catch (error) {
+    return res.status(statusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: `${erro}: ${error}` });
+  }
+};
+
+export default { create, login };

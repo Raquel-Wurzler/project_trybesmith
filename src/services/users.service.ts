@@ -6,9 +6,4 @@ const create = async (user: User): Promise<User> => {
   return userCreated;
 };
 
-// async function getAll(): Promise<Product[]> {
-//   const products = await productsModel.getAll();
-//   return products;
-// }
-
 export default { create };

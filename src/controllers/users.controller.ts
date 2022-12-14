@@ -30,14 +30,4 @@ const create = async (req: Request, res: Response) => {
   }
 };
 
-// async function getAll(req: Request, res: Response) {
-//   try {
-//     const products = await productsService.getAll();
-//     return res.status(statusCodes.OK).json(products);
-//   } catch (error) {
-//     return res.status(statusCodes.INTERNAL_SERVER_ERROR)
-//       .json({ message: `${erro}: ${error}` });
-//   }
-// }
-
 export default { create };

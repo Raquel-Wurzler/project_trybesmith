@@ -14,12 +14,4 @@ const create = async (user: User): Promise<User> => {
   return { id: insertId, ...user };
 };
 
-// async function getAll(): Promise<Product[]> {
-//   const [rows] = await connection.execute<RowDataPacket[] & Product[]>(
-//     'SELECT * FROM Trybesmith.products',
-//   );
-
-//   return rows;
-// }
-
 export default { create };

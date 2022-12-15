@@ -1,16 +1,18 @@
 import { Request, Response } from 'express';
 import ordersService from '../services/orders.service';
 import statusCodes from '../statusCodes';
-// import validateToken from '../middlewares/validateToken';
+import productsService from '../services/products.service';
 
 const erro = 'Ocorreu um erro';
 
 const create = async (req: Request, res: Response) => {
   try {
-    // const { /* productsIds */ decoded } = req.body.user;
-    console.log(req.body.user);
-    const orderCreated = await ordersService.create(1);
-    return res.status(statusCodes.CREATED).json(orderCreated);
+    const { productsIds } = req.body;
+    const orderCreated = await ordersService.create(req.body.user.id);
+    const mapUpdateOrderIdInProducts = productsIds
+      .map((pId: number) => productsService.update(pId, orderCreated));
+    await Promise.all(mapUpdateOrderIdInProducts);
+    return res.status(statusCodes.CREATED).json({ userId: req.body.user.id, productsIds });
   } catch (error) {
     return res.status(statusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: `${erro}: ${error}` });

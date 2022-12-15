@@ -21,7 +21,7 @@ const validateToken = async (req: Request, res: Response, next: NextFunction) =>
     const decoded = jwt.verify(token, SECRET);
     req.body.user = decoded;    
   } catch (error) {
-    return res.status(401).send({ message: 'Expired or invalid token' }); 
+    return res.status(401).send({ message: 'Invalid token' }); 
   }
   return next();
 };

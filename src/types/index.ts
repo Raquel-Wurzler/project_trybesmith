@@ -31,3 +31,7 @@ export type Error = {
 export type Password = {
   password: string
 };
+
+export type ProductsIds = {
+  productsIds: number[]
+};

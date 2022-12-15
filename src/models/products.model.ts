@@ -1,4 +1,4 @@
-import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
+import { ResultSetHeader, RowDataPacket, OkPacket } from 'mysql2/promise';
 import connection from './connection';
 import { Product } from '../types';
 
@@ -13,12 +13,23 @@ const create = async (product: Product): Promise<Product> => {
   return { id: insertId, ...product };
 };
 
-async function getAll(): Promise<Product[]> {
+const getAll = async (): Promise<Product[]> => {
   const [rows] = await connection.execute<RowDataPacket[] & Product[]>(
     'SELECT * FROM Trybesmith.products',
   );
 
   return rows;
-}
+};
 
-export default { create, getAll };
+const update = async (productId: number, orderId: number): Promise<Product> => {
+  const [rows] = await connection.execute<OkPacket & Product>(
+    `UPDATE Trybesmith.products
+    SET order_id = ?
+    WHERE id = ?`,
+    [orderId, productId],
+  );
+
+  return rows;
+};
+
+export default { create, getAll, update };

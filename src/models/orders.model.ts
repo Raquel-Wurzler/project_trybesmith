@@ -1,17 +1,15 @@
-import { RowDataPacket } from 'mysql2/promise';
+import { RowDataPacket, ResultSetHeader } from 'mysql2/promise';
 import connection from './connection';
 import { Order } from '../types';
 
-// const create = async (product: Product): Promise<Product> => {
-//   const { name, amount } = product;
-//   const result = await connection.execute<ResultSetHeader & Product>(
-//     'INSERT INTO Trybesmith.products(name, amount) VALUES (?, ?)',
-//     [name, amount],
-//   );
-//   const [dataInserted] = result;
-//   const { insertId } = dataInserted;
-//   return { id: insertId, ...product };
-// };
+const create = async (userId: number): Promise<number> => {
+  const [dataInserted] = await connection.execute<ResultSetHeader>(
+    'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
+    [userId],
+  );
+  const { insertId } = dataInserted;
+  return insertId;
+};
 
 async function getAll(): Promise<Order[]> {
   const [rows] = await connection.execute<RowDataPacket[] & Order[]>(
@@ -25,4 +23,4 @@ async function getAll(): Promise<Order[]> {
   return rows;
 }
 
-export default { getAll };
+export default { getAll, create };

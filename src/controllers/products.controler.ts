@@ -8,6 +8,7 @@ const create = async (req: Request, res: Response) => {
   try {
     const product = req.body;
     const productCreated = await productsService.create(product);
+
     return res.status(statusCodes.CREATED).json(productCreated);
   } catch (error) {
     return res.status(statusCodes.INTERNAL_SERVER_ERROR)

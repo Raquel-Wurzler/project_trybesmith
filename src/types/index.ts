@@ -17,3 +17,13 @@ export type Order = {
   id?: number,
   userId: number
 };
+
+export type Login = {
+  username: string,
+  password: string
+};
+
+export type Error = {
+  status: number,
+  message: string
+};

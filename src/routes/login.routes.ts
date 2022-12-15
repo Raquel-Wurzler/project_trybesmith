@@ -4,7 +4,7 @@ import validateLogin from '../middlewares/validateLogin';
 
 const loginRouter = Router();
 
-// loginRouter.use(validateLogin);
+loginRouter.use(validateLogin);
 
 loginRouter.post('/', validateLogin, usersController.login);
 

@@ -22,4 +22,11 @@ const getByUsername = async (username: string): Promise<User | undefined> => {
   return rows[0];
 };
 
-export default { create, getByUsername };
+const getAll = async (): Promise<User[]> => {
+  const [rows] = await connection.execute<RowDataPacket[] & User[]>(
+    'SELECT * FROM Trybesmith.users;',
+  );
+  return rows;
+};
+
+export default { create, getByUsername, getAll };

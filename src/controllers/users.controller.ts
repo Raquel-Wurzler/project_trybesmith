@@ -33,6 +33,12 @@ const create = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
   try {
     const { username } = req.body;
+    const users = await usersService.getAll();
+    const isValidUsername = users.some((u) => u.username === username);
+    if (!isValidUsername) {
+      const message = 'Username or password invalid';
+      return res.status(statusCodes.UNAUTHORIZED).json(message);
+    }
     const user = await usersService.getByUsername(username);
     const token = createToken(user);
     return res.status(statusCodes.OK).json({ token });

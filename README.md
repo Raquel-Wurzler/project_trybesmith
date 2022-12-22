@@ -20,14 +20,14 @@ _"A Trybe é uma escola do futuro para qualquer pessoa que queira melhorar de vi
 * Utilização de JWT (JSON Web Token) para gerar tokens, autenticar e autorizar o acesso a rotas do Express;
 
 ##### Arquivos disponibilizados pela Trybe:
-*.eslintignore;
-*.eslintrc.json;
-*.gitignore;
-*Trybesmith.sql;
-*docker-compose.yml;
-*package-lock.json;
-*package.json;
-*tsconfig.json;
+* .eslintignore;
+* .eslintrc.json;
+* .gitignore;
+* Trybesmith.sql;
+* docker-compose.yml;
+* package-lock.json;
+* package.json;
+* tsconfig.json;
 
 ## Stack utilizada
 

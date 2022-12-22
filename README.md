@@ -32,3 +32,27 @@ _"A Trybe é uma escola do futuro para qualquer pessoa que queira melhorar de vi
 ## Stack utilizada
 
 **Back-end:** Node, Express, Typescript, MySql
+
+## Instalação e uso
+
+```bash
+# Abra um terminal e copie este repositório com o comando
+git clone git@github.com:Raquel-Wurzler/project_trybesmith.git
+
+# Entre na pasta doprojeto 
+cd project_trybesmith
+
+# Instale as dependências
+yarn install
+ou 
+npm install
+
+# Rode o servidor
+npm run dev
+ou
+npm start
+
+# Rode a aplicação
+usando extensão Live Server no vs-code na porta 3000
+
+```

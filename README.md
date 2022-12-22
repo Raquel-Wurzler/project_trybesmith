@@ -39,7 +39,7 @@ _"A Trybe é uma escola do futuro para qualquer pessoa que queira melhorar de vi
 # Abra um terminal e copie este repositório com o comando
 git clone git@github.com:Raquel-Wurzler/project_trybesmith.git
 
-# Entre na pasta doprojeto 
+# Entre na pasta do projeto 
 cd project_trybesmith
 
 # Instale as dependências

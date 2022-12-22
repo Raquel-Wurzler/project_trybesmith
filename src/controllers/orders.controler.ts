@@ -19,14 +19,14 @@ const create = async (req: Request, res: Response) => {
   }
 };
 
-async function getAll(req: Request, res: Response) {
+const getAll = async (req: Request, res: Response) => {
   try {
-    const products = await ordersService.getAll();
-    return res.status(statusCodes.OK).json(products);
+    const orders = await ordersService.getAll();
+    return res.status(statusCodes.OK).json(orders);
   } catch (error) {
     return res.status(statusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: `${erro}: ${error}` });
   }
-}
+};
 
 export default { getAll, create };

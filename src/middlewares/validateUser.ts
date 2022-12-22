@@ -12,7 +12,6 @@ function validateUsername(username: string): Error | null {
     const message = '"username" must be a string';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
   }
-  
   if (username.length < 3) {
     const message = '"username" length must be at least 3 characters long';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
@@ -29,7 +28,6 @@ function validateVocation(vocation: string): Error | null {
     const message = '"vocation" must be a string';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
   }
-  
   if (vocation.length < 3) {
     const message = '"vocation" length must be at least 3 characters long';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
@@ -46,7 +44,6 @@ function validateLevel(level: number): Error | null {
     const message = '"level" must be a number';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
   }
-  
   if (level < 1) {
     const message = '"level" must be greater than or equal to 1';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
@@ -65,12 +62,10 @@ export default async function validateUser(
   if (errorUsername) {
     return res.status(errorUsername.status).json({ message: errorUsername.message });
   }
-
   const errorVocation = await validateVocation(vocation);
   if (errorVocation) {
     return res.status(errorVocation.status).json({ message: errorVocation.message });
   }
-
   const errorLevel = await validateLevel(level);
   if (errorLevel) {
     return res.status(errorLevel.status).json({ message: errorLevel.message });

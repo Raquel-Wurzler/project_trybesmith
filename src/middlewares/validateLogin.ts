@@ -4,7 +4,7 @@ import usersService from '../services/users.service';
 
 import { Login, Error } from '../types';
 
-async function validateData(username: (string), password: string): Promise<Error | null> {
+async function validateData(username: string, password: string): Promise<Error | null> {
   if (!password) {
     const message = '"password" is required';
     return ({ status: statusCodes.BAD_REQUEST, message });
@@ -13,8 +13,8 @@ async function validateData(username: (string), password: string): Promise<Error
     const message = '"username" is required';
     return ({ status: statusCodes.BAD_REQUEST, message });
   }
+
   const user = await usersService.getByUsername(username);
-  
   if (!user || user.password !== password) {
     const message = 'Username or password invalid';
     return ({ status: statusCodes.UNAUTHORIZED, message });
@@ -31,7 +31,9 @@ export default async function validateLogin(
 
   const error = await validateData(username, password);
 
-  if (error) return res.status(error.status).json({ message: error.message });
+  if (error) {
+    return res.status(error.status).json({ message: error.message });
+  }
 
   next();
 }

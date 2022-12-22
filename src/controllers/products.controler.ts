@@ -16,7 +16,7 @@ const create = async (req: Request, res: Response) => {
   }
 };
 
-async function getAll(req: Request, res: Response) {
+const getAll = async (req: Request, res: Response) => {
   try {
     const products = await productsService.getAll();
     return res.status(statusCodes.OK).json(products);
@@ -24,6 +24,6 @@ async function getAll(req: Request, res: Response) {
     return res.status(statusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: `${erro}: ${error}` });
   }
-}
+};
 
 export default { create, getAll };

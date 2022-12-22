@@ -12,7 +12,6 @@ function validateName(name: string): Error | null {
     const message = '"name" must be a string';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
   }
-  
   if (name.length < 3) {
     const message = '"name" length must be at least 3 characters long';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
@@ -29,7 +28,6 @@ function validateAmount(amount: string): Error | null {
     const message = '"amount" must be a string';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
   }
-  
   if (amount.length < 3) {
     const message = '"amount" length must be at least 3 characters long';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
@@ -45,12 +43,14 @@ export default async function validateProduct(
   const { name, amount } = req.body as Product;
 
   const errorName = await validateName(name);
-
-  if (errorName) return res.status(errorName.status).json({ message: errorName.message });
+  if (errorName) {
+    return res.status(errorName.status).json({ message: errorName.message });
+  }
 
   const errorAmount = await validateAmount(amount);
-
-  if (errorAmount) return res.status(errorAmount.status).json({ message: errorAmount.message });
+  if (errorAmount) {
+    return res.status(errorAmount.status).json({ message: errorAmount.message });
+  }
 
   next();
 }

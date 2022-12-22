@@ -11,7 +11,7 @@ const create = async (userId: number): Promise<number> => {
   return insertId;
 };
 
-async function getAll(): Promise<Order[]> {
+const getAll = async (): Promise<Order[]> => {
   const [rows] = await connection.execute<RowDataPacket[] & Order[]>(
     `SELECT o.id, o.user_id AS userId, JSON_ARRAYAGG(pr.id) AS productsIds
     FROM Trybesmith.orders AS o
@@ -21,6 +21,6 @@ async function getAll(): Promise<Order[]> {
   );
   
   return rows;
-}
+};
 
 export default { getAll, create };

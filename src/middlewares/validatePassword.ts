@@ -12,7 +12,6 @@ function validatePassword(password: string): Error | null {
     const message = '"password" must be a string';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
   }
-  
   if (password.length < 8) {
     const message = '"password" length must be at least 8 characters long';
     return ({ status: statusCodes.UNPROCESSABLE_ENTITY, message });
